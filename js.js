@@ -5,18 +5,18 @@
     function obtainData() {
         let xhr = new XMLHttpRequest();
 
-        let day = document.getElementById('day').value;
-        let month = document.getElementById('month').value;
-        let year = document.getElementById('year').value;
+        //let day = document.getElementById('day').value;
+        //let month = document.getElementById('month').value;
+        //let year = document.getElementById('year').value;
 
-        let newDate = year + "-" + month + "-" + day;
+        //let newDate = year + "-" + month + "-" + day;
 
         let input = document.getElementById('inputDate').value;
 
         var date = new Date(input);
         let day1 = date.getDate();
         let month1 = date.getMonth() + 1;
-        let year1 = date.getFullyear();
+        let year1 = date.getFullYear();
 
 
         let newDate1 = year1 + "-" + month1 + "-" + day1;
