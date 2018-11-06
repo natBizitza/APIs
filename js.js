@@ -3,13 +3,6 @@
     startBtn.addEventListener("click", obtainData);
 
     function obtainData() {
-        let xhr = new XMLHttpRequest();
-
-        //let day = document.getElementById('day').value;
-        //let month = document.getElementById('month').value;
-        //let year = document.getElementById('year').value;
-
-        //let newDate = year + "-" + month + "-" + day;
 
         let input = document.getElementById('inputDate').value;
 
@@ -20,48 +13,39 @@
 
         let newDate1 = year1 + "-" + month1 + "-" + day1;
 
-        let oldDate = new Date (date.setDate(date.getDate() - 14));
-
-        let day2 = oldDate.getDate();
-        let month2 = oldDate.getMonth() + 1;
-        let year2 = oldDate.getFullYear();
-
-        let newOldDate = year2 + "-" + month2 + "-" + day2;
-
         let array = [];
 
-        for (let i = newDate1; i < 14; i--) {
+        for (let i = 0 ; i < 14; i++) {
 
-           let r = new Date (date.setDate(date.getDate() - i));
+            let data = new Date(date.setDate(date.getDate() - 1));
 
-            let day3 = r.getDate();
-            let month3 = r.getMonth() + 1;
-            let year3 = r.getFullYear();
+            let day3 = data.getDate();
+            let month3 = data.getMonth() + 1;
+            let year3 = data.getFullYear();
 
-            let newOldDate3 = year3 + "-" + month3 + "-" + day3;
+            let newOldDate3 = data.getFullYear() + "-" + (data.getMonth() + 1) + "-" + data.getDate();
 
             array.push(newOldDate3);
-
         }  
 
-  
-        //TODO: change below
-        array.forEach(x => {
-            xhr.open("GET", "https://api.nasa.gov/planetary/apod?api_key=lzoMeM8jKcFxyl9crmCv9zQ37ImYydIJu56vxDaL&date=" + x);
-            console.log(x);
-        });
+        pedirNasa(array);     
+    }
 
-       
-        //xhr.onreadystatechange = function () {
-        //    if (xhr.readyState == 4 && xhr.status == 200) {
-        //        showData(xhr.response);
-
-        //    }
-        //};
-        xhr.addEventListener("load", function () {
-            showData(this.response);
-        });
-        xhr.send();
+    function pedirNasa(array) {
+        let index = 0;
+        let xhrFechas = new XMLHttpRequest();
+        xhrFechas.open("GET", "https://api.nasa.gov/planetary/apod?api_key=lzoMeM8jKcFxyl9crmCv9zQ37ImYydIJu56vxDaL&date=" + array[index]);
+        xhrFechas.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                showData(this.response);
+                index++;
+                if (index < array.length) {
+                    xhrFechas.open("GET", "https://api.nasa.gov/planetary/apod?api_key=lzoMeM8jKcFxyl9crmCv9zQ37ImYydIJu56vxDaL&date="+array[index]);
+                    xhrFechas.send();
+                }
+            }
+        };
+        xhrFechas.send();
     }
 
     function showData(response) {
@@ -73,7 +57,7 @@
         //document.getElementById('copyright').innerHTML = data['copyright'];
         //document.getElementById('date').innerHTML = data['date'];
         //document.getElementById('explanation').innerHTML = data['explanation'];
-        document.getElementById('title').innerHTML = data['title'];
+        document.getElementById('title').innerHTML += data['title'];
 
         //let image = '<img src="' + data['url'] + '" />';
 
