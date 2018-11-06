@@ -30,13 +30,13 @@
 
         let array = [];
 
-        for (let i = newOldDate; i < 14; i++) {
+        for (let i = newDate1; i < 14; i--) {
 
-            date.setDate(date.getDate() + i);
+           let r = new Date (date.setDate(date.getDate() - i));
 
-            let day3 = date.getDate();
-            let month3 = date.getMonth() + 1;
-            let year3 = date.getFullYear();
+            let day3 = r.getDate();
+            let month3 = r.getMonth() + 1;
+            let year3 = r.getFullYear();
 
             let newOldDate3 = year3 + "-" + month3 + "-" + day3;
 
