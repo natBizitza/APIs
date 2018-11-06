@@ -21,12 +21,12 @@ function obtenerPlanet() {
     //devolver array de tipos de pokemon
 }
 
-function pedirPlanet() {
+//function pedirPlanet() {
 
-    let xhrFechas = new XMLHttpRequest();
-    xhrFechas.open("GET", "https://swapi.co/api/planets/");
+//    let xhrFechas = new XMLHttpRequest();
+//    xhrFechas.open("GET", "https://swapi.co/api/planets/");
    
-}
+//}
 
 
 function mostrarTipos(response) {
@@ -37,9 +37,14 @@ function mostrarTipos(response) {
     let data = JSON.parse(json);
     console.log(data);
 
-    var element = document.getElementById("planet-select");
+    data['results'].forEach(x => {
 
-    element.appendChild();
+        let element = document.getElementById("planet-select");
+        var z = document.createElement('option'); // is a node
+        z.innerHTML = x.name;
+        element.appendChild(z);
+    });
+    
    
     //poner datos en dropdown
 
@@ -50,3 +55,5 @@ function mostrarTipos(response) {
 function cogerPokemonsDeTipo(tipo) {
     //coger todos, elegir 3 random
 }
+
+obtenerPlanet();
