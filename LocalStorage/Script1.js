@@ -14,12 +14,11 @@ function getPerson() {
 
 let savedInfo = JSON.parse(localStorage.getItem('person'));
 
-if (savedInfo !== null) {
-    document.getElementById('mostrar').innerHTML = savedInfo.nombre + " " + savedInfo.edad;
-} else {
-    console.log("The button doesn't exist on the page.");
-}
-
+//if (savedInfo !== null) {
+//    document.getElementById('mostrar').innerHTML = savedInfo.nombre + " " + savedInfo.edad;
+//} else {
+//    console.log("The button doesn't exist on the page.");
+//}
 
 let startBtn = document.getElementById('info_btn');
 

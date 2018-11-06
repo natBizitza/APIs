@@ -37,6 +37,26 @@
         let image = '<img src="' + data['url'] + '" />';
 
         document.getElementById('url').innerHTML = image;
+
+        function getPerson() {
+            let nombre = document.getElementById('nombre').value;
+
+            let edad = document.getElementById('edad').value;
+
+            let person = { nombre: nombre, edad: edad };
+
+            document.getElementById('mostrar').innerHTML = person.nombre + " " + person.edad;
+
+            //to convert person to string
+            localStorage.setItem('person', JSON.stringify(person));
+        }
+
+        let savedInfo = JSON.parse(localStorage.getItem('person'));
+        if (savedInfo !== null) {
+            document.getElementById('mostrar').innerHTML = savedInfo.nombre + " " + savedInfo.edad;
+        } else {
+            console.log("The button doesn't exist on the page.");
+        }
     }
 }());
 
