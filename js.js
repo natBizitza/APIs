@@ -31,6 +31,7 @@
         pedirNasa(array);     
     }
 
+    // the function is from the Iker's example 
     function pedirNasa(array) {
         let index = 0;
         let xhrFechas = new XMLHttpRequest();
@@ -40,7 +41,7 @@
                 showData(this.response);
                 index++;
                 if (index < array.length) {
-                    xhrFechas.open("GET", "https://api.nasa.gov/planetary/apod?api_key=lzoMeM8jKcFxyl9crmCv9zQ37ImYydIJu56vxDaL&date="+array[index]);
+                    xhrFechas.open("GET", "https://api.nasa.gov/planetary/apod?api_key=lzoMeM8jKcFxyl9crmCv9zQ37ImYydIJu56vxDaL&date=" + array[index]);
                     xhrFechas.send();
                 }
             }
